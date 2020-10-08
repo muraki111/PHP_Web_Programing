@@ -13,7 +13,7 @@
                 for($j = 1; $j <= 9; $j++)
                     {
                         echo"<td>";
-                        echo "$j*$i";
+                        echo $j*$i;
                         echo"</td>";
                     }
                 echo"</tr>";
