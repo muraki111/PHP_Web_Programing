@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>ページタイトル</title>
+        <title>sample2.php</title>
     </head>
     <body>
         <table border=1 style="border-collapse:collapse;">
