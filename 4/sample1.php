@@ -31,5 +31,22 @@
     EOT;
 ?>
         <p> $a は 「<?php echo $a ?>」です。 </p>
+        <p> $b は 「<?php echo $b ?>」です。 </p>
+        <p> $c は 「<?php echo $c ?>」です。 </p>
+        <p> $d は 「<?php echo $d ?>」です。 </p>
+        <p> $e は 「<?php echo $e ?>」です。 </p>
+        <p> $f は 「<?php echo $f ?>」です。 </p>
+        <p> $g は 「<?php echo $g ?>」です。 </p>
+        <p> $h は 「<?php echo $h ?>」です。 </p>
+        <p> $i は 「<?php echo $i ?>」です。 </p>
+        <p> $j は 「<?php echo $j ?>」です。 </p>
+        <p> $k は 「<?php echo $k ?>」です。 </p>
+        <p> $l は 「<?php echo $l ?>」です。 </p>
+        <p> $m は 「<?php echo $m ?>」です。 </p>
+        <p> $n は 「<?php echo $n ?>」です。 </p>
+        <p> $o は 「<?php echo $o ?>」です。 </p>
+        <p> $p は 「<?php echo $p ?>」です。 </p>
+        <p> $q は 「<?php echo $q ?>」です。 </p>
+        <p> $r は 「<?php echo $r ?>」です。 </p>
     </body>
 </html>
