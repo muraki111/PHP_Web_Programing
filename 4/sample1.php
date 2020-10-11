@@ -28,7 +28,7 @@
     <p> hogehoge </p>
     $a
     <p> hogehoge </p>
-    EOT;
+EOT;
 ?>
         <p> $a は 「<?php echo $a ?>」です。 </p>
         <p> $b は 「<?php echo $b ?>」です。 </p>
