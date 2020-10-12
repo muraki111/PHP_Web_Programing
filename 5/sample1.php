@@ -15,10 +15,9 @@
     <body>
     <p>
 <?php
-    echo '$box[0] は「'.$box[0].'」です<br>';
-    echo '$box[1] は「'.$box[1].'」です<br>';
-    echo "\$box[2] は「 {$box[2]} 」です<br>";
-    echo '$box[3] は「'.$box[3].'」です';
+    echo '$price['.$box[0].'] = '.$box[3].';<br>';
+    echo '$price['.$box[1].'] = '.$box[4].';<br>';
+    echo '$price['.$box[2].'] = '.$box[5].';<br>';
 ?>
     </p>
     </body>
