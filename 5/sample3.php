@@ -40,7 +40,7 @@ if(isset($_GET['name2'])){
 
     echo "<p> $name2 : $n2</p>";
 
-echo '<a href="http://127.0.0.1:10800/~sspuser/5/sample3.php?n2='. ($n2+1) . '&name2=' . $name2 . '">リンゴを1個追加</a> ';
+echo '<a href="http://127.0.0.1:10800/~sspuser/5/sample3.php?n2='. ($n2+1) . '&name2=' . $name2 . '">バナナを1個追加</a> ';
 ?>
         <a href="http://127.0.0.1:10800/~sspuser/5/sample3.php">戻る</a>
 
@@ -60,7 +60,7 @@ if(isset($_GET['name3'])){
 
     echo "<p> $name3 : $n3</p>";
 
-echo '<a href="http://127.0.0.1:10800/~sspuser/5/sample3.php?n3='. ($n3+1) . '&name3=' . $name3 . '">リンゴを1個追加</a> ';
+echo '<a href="http://127.0.0.1:10800/~sspuser/5/sample3.php?n3='. ($n3+1) . '&name3=' . $name3 . '">パイナップルを1個追加</a> ';
 ?>
         <a href="http://127.0.0.1:10800/~sspuser/5/sample3.php">戻る</a>
 
