@@ -23,7 +23,7 @@
     <body>
     <p>
 <?php
-    echo "<pre>" . htmlspecialchars(print_r($a,true)) . "</pre>";
+
 ?>
     </p>
     </body>
