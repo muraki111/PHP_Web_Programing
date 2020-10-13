@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
 <?php
-    $box[0]="apple";
-    $box[1]="orange";
-    $box[2]="pinapple";
-    $box[3]=150;
-    $box[4]=120;
-    $box[5]=300;
+    $price['apple'] = 150;
+    $price['orange'] = 120;
+    $price['pinapple'] = 300;
 ?>
     <head>
         <meta charset="UTF-8" />
@@ -15,9 +12,10 @@
     <body>
     <p>
 <?php
-    echo ''.$box[0].'= '.$box[3].';<br>';
-    echo ''.$box[1].' = '.$box[4].';<br>';
-    echo ''.$box[2].' = '.$box[5].';<br>';
+    foreach($price as $a => $b)
+    {
+        echo "$a : $b <br>";
+    }
 ?>
     </p>
     </body>
