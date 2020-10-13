@@ -23,9 +23,9 @@
     <body>
     <p>
 <?php
-    foreach ($a as $key => $value) {
-        foreach ($a[$key] as $key => $value) {
-        echo "$key : $value <br>";
+    foreach ($a as $key => $b) {
+        foreach ($a[$key] as $key => $b) {
+        echo "$key : $b <br>";
         }
     }
 ?>
