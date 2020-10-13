@@ -15,9 +15,9 @@
     <body>
     <p>
 <?php
-    echo '$price['.$box[0].'] = '.$box[3].';<br>';
-    echo '$price['.$box[1].'] = '.$box[4].';<br>';
-    echo '$price['.$box[2].'] = '.$box[5].';<br>';
+    echo ''.$box[0].'= '.$box[3].';<br>';
+    echo ''.$box[1].' = '.$box[4].';<br>';
+    echo ''.$box[2].' = '.$box[5].';<br>';
 ?>
     </p>
     </body>
