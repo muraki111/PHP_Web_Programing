@@ -23,7 +23,11 @@
     <body>
     <p>
 <?php
-
+    foreach ($a as $key => $value) {
+        foreach ($a[$key] as $key => $value) {
+        echo "$key : $value <br>";
+        }
+    }
 ?>
     </p>
     </body>
