@@ -26,7 +26,7 @@
                     <?php
                         foreach ($a as $key => $b) {
                             foreach ($a[$key] as $key => $b) {
-                                echo "<tr><td>$key : $b </td></tr>";
+                                echo "<tr><td>$key : $b </td></tr>";//表示
                             }
                         }
                     ?>
