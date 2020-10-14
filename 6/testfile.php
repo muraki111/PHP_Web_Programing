@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1> フォームのサンプル </h1>
-        <form method="get" action="recv.php">
+        <form method="get" action="testfile.php">
             入力1<input type="text" name="Txt1" value="">
             <br>
             入力2<textarea name="Txt2" rows="5" cols="30"></textarea>
