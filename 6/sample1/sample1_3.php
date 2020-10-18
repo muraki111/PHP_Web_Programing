@@ -7,7 +7,7 @@
     <body>
         <h1 align="center"> なんちゃって掲示板 </h1>
         <form method="get" action="sample1".php">
-        <button type="submit" name="Btn1" value="Btn1"style="width:100%;height:50px">新規投稿</button>
+        <button type="submit" name="Btn1" value="Btn1"style="width:100%;height:50px">投稿する</button>
         </form>
     </body>
 </html>
