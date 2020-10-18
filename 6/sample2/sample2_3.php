@@ -15,8 +15,12 @@
                 echo "</td>";
             ?>
         </table>
-        <form method="post" action="sample1_1.php">
-        <button type="submit" name="Btn3" value="Btn3"style="width:100%;height:50px">投稿する</button>
+        <form method="post" action="sample2_1.php">
+            <button type="submit" name="Btn4" value="Btn4"style="width:100%;height:50px">投稿する</button>
+        </form>
+        <form method="post" action="sample2_2.php">
+            <button type="submit" name="Btn5" value="Btn5"style="width:100%;height:50px">修正する</button>
+            <input type="hidden" name="Txt" value="<?php echo $a; ?>">
         </form>
     </body>
 </html>
