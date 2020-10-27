@@ -16,14 +16,14 @@
         $dbname = 'kadai7';
         $tablename = 'kadai7tb';
         $link = mysqli_connect($hostname,$username,$password);
-       if(! $link){ exit("Connect error!"); }
-       $result = mysqli_query($link,"USE $dbname");
-       if(!$result) { exit("USE failed!"); }
-       $result = mysqli_query($link,"INSERT INTO $tablename SET day=$a, price=$b, deposit=$c,withdraw=$d");
-       if(! $result){ exit("INSERT error!"); }
-       echo "Create db and table and update succeeded!\n";
-       mysqli_close($link);
-       ?>
+        if(! $link){ exit("Connect error!"); }
+        $result = mysqli_query($link,"USE $dbname");
+        if(!$result) { exit("USE failed!"); }
+        $result = mysqli_query($link,"INSERT INTO $tablename SET day=$a, price=$b, deposit=$c,withdraw=$d");
+        if(! $result){ exit("INSERT error!"); }
+        echo "Create db and table and update succeeded!\n";
+        mysqli_close($link);
+        ?>
 
         <?php
     $dbname = 'kadai7';
@@ -36,7 +36,7 @@
     echo "[Contents of Table]\n";
 
     $result = mysqli_query($link,"select * from $tablename");
-    if(!$result){ exit("Select error on table ($tablename)!"); } 
+    if(!$result){ exit("Select error on table ($tablename)!"); }
 
     $ary_of_fieldinfo = mysqli_fetch_fields($result);
 
@@ -48,7 +48,7 @@
         foreach($row as $key => $value)
         {
             echo '    '
-                  . htmlspecialchars($ary_of_fieldinfo[$key]->name) . "  : ";
+                    . htmlspecialchars($ary_of_fieldinfo[$key]->name) . "  : ";
             echo htmlspecialchars($value) . "\n";
         }
     }
@@ -58,7 +58,7 @@
 
     mysqli_close($link);
 
-    echo "</pre>";    
+    echo "</pre>";
     ?>
     </body>
 </html>
