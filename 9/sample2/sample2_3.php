@@ -10,6 +10,17 @@
         <table border="1" align="center">
             <?php
                 $a=$_POST['Txt'];
+                $hostname = '127.0.0.1';
+                $username = 'root';
+                $password = 'dbpass';
+
+                $dbname = 'sample9_db';
+                $tablename = 'sample9_1';
+
+                $link = mysqli_connect($hostname,$username,$password);
+
+                
+
                 echo "<td>";
                 echo htmlspecialchars($a) . '<br>';
                 echo "</td>";
