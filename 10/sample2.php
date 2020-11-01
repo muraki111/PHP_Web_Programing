@@ -33,8 +33,7 @@ else
 {
     echo "Internal Error!"; // あり得ないエラー
 }
-function echo_page_list()
-{
+function echo_page_list(){
     global $hostname, $username, $password, $dbname, $tablename;
 
     echo <<<EOT
@@ -45,6 +44,7 @@ function echo_page_list()
         <title>トップページ</title>
     </head>
     <body>
+    <h1 align="center"> なんちゃって掲示板 </h1>
 EOT;
 
     $link = mysqli_connect($hostname,$username,$password,$dbname);
@@ -77,7 +77,7 @@ EOT;
     mysqli_close($link);
 
     echo <<<EOT
-        <form method="post" action="sample.php">
+        <form method="post" action="sample2.php">
             <button type="submit" name="button_new" value="button_new">新規入力</button>
             <input type="hidden" name="transition" value="trans_input_new">
         </form>
@@ -85,6 +85,43 @@ EOT;
     echo <<<EOT
     </body>
 </html>
+EOT;
+}
+function echo_page_input(){
+    global $hostname, $username, $password, $dbname, $tablename;
+    echo <<<EOT
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>トップページ</title>
+    </head>
+    <body>
+    <h1 align="center"> なんちゃって掲示板 </h1>
+EOT;
+    echo <<<EOT
+    <form method="post" action="sample2.php">
+    <textarea name="Txt" rows="5" cols="30" style="width:100%;height:300px">
+    </textarea>
+    <button type="hidden" name="Btn2" value="Btn2"style="width:100%;height:50px">投稿確認</button>
+    <input type="hidden" name="transition" value="trans_confirm">
+    </form>
+    <form method="post" action="sample2.php">
+        <button type="hidden" name="Btn3" value="Btn3"style="width:100%;height:50px">戻る</button>
+        <input type="hidden" name="transition" value="trans_return_top">
+    </form>
+EOT;
+
+}
+function echo_page_confirm(){
+    global $hostname, $username, $password, $dbname, $tablename;
+    echo <<<EOT
+    <h1 align="center"> なんちゃって掲示板 </h1>
+    <h2 align="center">入力内容は</h2>
+    <form method="post" action="sample2.php">
+        <button type="hidden" name="Btn3" value="Btn3"style="width:100%;height:50px">戻る</button>
+        <input type="hidden" name="transition" value="trans_input_new">
+    </form>
 EOT;
 }
 ?>
