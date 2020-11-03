@@ -26,7 +26,7 @@ echo <<<EOT
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>ページタイトル</title>
+        <title>東京都市大学　出席管理システム</title>
     </head>
     <body>
 $msg
