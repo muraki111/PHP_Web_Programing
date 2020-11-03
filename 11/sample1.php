@@ -16,7 +16,6 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){
 echo_hello_page($user);
 
 
-
 function echo_auth_page($msg){
 echo <<<EOT
 <!DOCTYPE html>
