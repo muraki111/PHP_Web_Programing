@@ -32,9 +32,10 @@ echo <<<EOT
     <h1 align="left"> 東京都市大学 </h1>
     出席確認システム
     <hr>
+    <br>
     <form method="POST" action="sample1.php">
-        <input type="text" name="user" value=""style="width:141px;height:19px"placeholder="ユーザーID"><br><br>
-        <input type="password" name="pass" value=""style="width:141px;height:19px"placeholder="パスワード"><br><br>
+        <input type="text" name="user" value=""style="width:141px;height:25px"placeholder="ユーザーID"><br><br>
+        <input type="password" name="pass" value=""style="width:141px;height:25px"placeholder="パスワード"><br><br>
         $msg<br>
         <button type="submit" name="login" value="login"style="width:170px;height:25px">出席</button><br><br>
     </form>
