@@ -9,3 +9,12 @@ CREATE TABLE g1872000_Msc (Subject VARCHAR(3) BINARY, Num INT, DAY DATETIME,PRIM
 CREATE TABLE g1872000_Art (Subject VARCHAR(3) BINARY, Num INT, DAY DATETIME,PRIMARY KEY(Subject)) CHARACTER SET utf8;
 
 CREATE TABLE g1872000_PE (Subject VARCHAR(3) BINARY, Num INT, DAY DATETIME,PRIMARY KEY(Subject)) CHARACTER SET utf8;
+
+数学 Mth
+理科 Sci
+社会 Sct
+音楽 Msc
+美術 Art
+体育 PE
+
+https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1175308191
