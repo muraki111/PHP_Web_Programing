@@ -3,7 +3,7 @@ $passlist=array( 'hogehoge' => 'hogepass', 'hoge2' => 'hoge2pass');
 
 if(!isset($_POST['user']))
 {
-    echo_auth_page("ログイン");
+    echo_auth_page("");
     exit;
 }
 $user=$_POST['user'];
@@ -11,7 +11,7 @@ $pass=$_POST['pass'];
 
 if( (!isset($passlist[$user])) || $passlist[$user] != $pass)
 {
-    echo_auth_page("パスワードが違います");
+    echo_auth_page("IDまたはパスワードに誤りがあります");
     exit;
 }
 
