@@ -1,5 +1,5 @@
 <?php
-$passlist=array( 'hogehoge' => 'hogepass', 'hoge2' => 'hoge2pass');
+$passlist=array( 'tcu' => 'tcupass', 'tcu2' => 'tcu2pass');
 
 if(!isset($_POST['user'])){
     echo_auth_page("ログイン");
