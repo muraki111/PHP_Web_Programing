@@ -29,12 +29,17 @@ echo <<<EOT
         <title>東京都市大学　出席管理システム</title>
     </head>
     <body>
-$msg
+    <h1 align="left"> 東京都市大学 </h1>
+    出席確認システム
+    <hr>
     <form method="POST" action="sample1.php">
-        username <input type="text" name="user" value=""><br>
-        password <input type="password" name="pass" value=""><br>
-        <button type="submit" name="login" value="login">Login</button>
+        <input type="text" name="user" value=""style="width:141px;height:19px"placeholder="ユーザーID"><br><br>
+        <input type="password" name="pass" value=""style="width:141px;height:19px"placeholder="パスワード"><br><br>
+        $msg<br>
+        <button type="submit" name="login" value="login"style="width:170px;height:25px">出席</button><br><br>
     </form>
+    <a href="https://www.itc.tcu.ac.jp/campaign/howtounlock.html">ログインができなくなった方</a>
+
     </body>
 </html>
 EOT;
