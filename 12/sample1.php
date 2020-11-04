@@ -19,7 +19,7 @@ if(!isset($_POST['user'])){//ログイン画面
     echo_main_page("");
     exit;
 }elseif(isset($_POST['exit'])){//授業時間外画面
-    
+
 }
 $user=$_POST['user'];//ユーザ名
 $pass=$_POST['pass'];//パスワード
