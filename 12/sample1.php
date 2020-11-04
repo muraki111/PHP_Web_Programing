@@ -1,24 +1,37 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');
-$passlist=array( 'g1872000' => 'g1872000', 'hoge2' => 'hoge2pass');
+$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');
 $date_now = date('Y-m-d');	// 年月日
 $time_now = date('H:i:s');	// 時分秒
 
-if(!isset($_POST['user'])){
-    echo_auth_page("");
+$time_1_start = '9:30:00';//1限開始
+$time_1_end = '11:00:00';//1限終了
+$time_2_start = '11:10:00';//2限開始
+$time_2_end = '12:40:00';//2限終了
+$time_3_start = '13:30:00';//3限開始
+$time_3_end = '15:00:00';//3限終了
+$time_4_start = '15:10:00';//4限開始
+$time_4_end = '16:40:00';//4限終了
+$time_5_start = '16:50:00';//5限開始
+$time_5_end = '18:20:00';//5限終了
+
+if(!isset($_POST['user'])){//ログイン画面
+    echo_main_page("");
+    exit;
+}elseif(isset($_POST['exit'])){//授業時間外画面
+    
+}
+$user=$_POST['user'];//ユーザ名
+$pass=$_POST['pass'];//パスワード
+
+if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ログイン画面
+    echo_main_page("IDまたはパスワードに誤りがあります");
     exit;
 }
-$user=$_POST['user'];
-$pass=$_POST['pass'];
 
-if( (!isset($passlist[$user])) || $passlist[$user] != $pass){
-    echo_auth_page("IDまたはパスワードに誤りがあります");
-    exit;
-}
+echo_select_page($user);//教科，出席番号選択画面
 
-echo_login_page($user);
-
-function echo_auth_page($msg){
+function echo_main_page($msg){//ログイン画面
     global $date_now,$time_now;
     echo <<<EOT
     <!DOCTYPE html>
@@ -46,7 +59,7 @@ function echo_auth_page($msg){
     </html>
 EOT;
 }
-function echo_login_page($who){
+function echo_select_page($who){//教科，出席番号選択画面
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -100,7 +113,7 @@ function echo_login_page($who){
     </html>
 EOT;
 }
-function echo_hello_page($who){
+function echo_exit_page($who){//授業時間外画面
     echo <<<EOT
     <!DOCTYPE html>
     <html>
