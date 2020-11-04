@@ -36,8 +36,11 @@ echo <<<EOT
     <form method="POST" action="sample1.php">
         <input type="text" name="user" value=""style="width:141px;height:25px"placeholder="ユーザーID"><br><br>
         <input type="password" name="pass" value=""style="width:141px;height:25px"placeholder="パスワード"><br><br>
-        $msg<br>
-        <button type="submit" name="login" value="login"style="width:170px;height:25px">出席</button><br><br>
+        <font class="notice"style="color:#ff0000;">$msg</font>
+        <br>
+        <button type="submit" name="login" value="login"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席</button>
+        <br>
+        <br>
     </form>
     <a href="https://www.itc.tcu.ac.jp/campaign/howtounlock.html">ログインができなくなった方</a>
 
@@ -56,18 +59,47 @@ echo <<<EOT
         <title>東京都市大学　出席管理システム</title>
     </head>
     <body>
-$who
-<hr>
-授業科目を確認<br>
-<select name="SelectSubject" size="7">
-    <option value="x" selected="">▽選択して下さい。</option>
-    <option value="">数学</option>
-    <option value="">理科</option>
-    <option value="">社会</option>
-    <option value="">音楽</option>
-    <option value="">美術</option>
-    <option value="">体育</option>
-</select>
+        <h1 align="left" style="display:inline;"> 東京都市大学 </h1>
+        $who
+        <hr>
+        授業科目を確認<br>
+        <select name="SelectSubject" size="8" style="width: 188.333px">
+            <option value="x" selected="">▽選択して下さい。</option>
+            <option value="">数学</option>
+            <option value="">理科</option>
+            <option value="">社会</option>
+            <option value="">音楽</option>
+            <option value="">美術</option>
+            <option value="">体育</option>
+        </select>
+        <br>
+        <font class="notice"style="color:#0000FF;">※出席登録ボタンをクリックする前に、授業科目を選択してください。</font>
+        <br>
+        <br>
+        教員が指示した番号を選択
+        <br>
+        <select name="InpNo" size="3">
+            <option value="x" selected="">▽選択して下さい。</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <br>
+        <br>
+        教員の指示に従って出席登録をクリック
+        <br>
+        <font class="alert" style="color:#ff0000;">授業科目と教員番号を選択して下さい。</font>
+        <br>
+        <button type="submit" name="login" value="login"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席登録</button>
+        <br>
+        <br>
+        ※教員の指示があるまで出席登録をクリックしないこと
     </body>
 </html>
 EOT;
