@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
-$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名，パスワード
+$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
 $time_now = date('H:i:s');	// 現在の時分秒
 
@@ -17,23 +17,24 @@ $Subject_end[3][0] = '16:40:00';//4限終了
 $Subject_start[4][1] = '16:50:00';//5限開始
 $Subject_end[4][0] = '18:20:00';//5限終了
 
-if(!isset($_POST['user'])){//ログイン画面
-    echo_main_page("");
+if(!isset($_POST['user'])){//「ログイン画面」に遷移
+    echo_login_page("");//ログイン画面
     exit;
-}elseif(isset($_POST['exit'])){//授業時間外画面
-
 }
 $user=$_POST['user'];//ユーザ名
 $pass=$_POST['pass'];//パスワード
 
-if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ログイン画面
-    echo_main_page("IDまたはパスワードに誤りがあります");
+if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・パスワードの誤り時に「ログイン画面」に再帰
+    echo_login_page("IDまたはパスワードに誤りがあります");//「ログイン画面」に再帰
+    exit;
+}elseif(isset($_POST['exit'])){//授業時間外の場合「授業時間外画面」に遷移
+    echo_exit_page("");//授業時間外画面
     exit;
 }
 
-echo_select_page($user);//教科，出席番号選択画面
+echo_select_page($user);//授業時間内かつ，ユーザ名・パスワードが正しい場合「教科，出席番号選択画面」に遷移
 
-function echo_main_page($msg){//ログイン画面
+function echo_login_page($msg){//ログイン画面
     global $date_now,$time_now;
     echo <<<EOT
     <!DOCTYPE html>
