@@ -15,10 +15,11 @@ $time_4_end = '16:40:00';//4限終了
 $time_5_start = '16:50:00';//5限開始
 $time_5_end = '18:20:00';//5限終了
 
-
 if(!isset($_POST['user'])){//ログイン画面
     echo_main_page("");
     exit;
+}elseif(isset($_POST['exit'])){//授業時間外画面
+    
 }
 $user=$_POST['user'];//ユーザ名
 $pass=$_POST['pass'];//パスワード
@@ -28,9 +29,6 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ログイン画�
     exit;
 }
 
-if(isset($_POST['exit'])){//授業時間外画面
-
-}
 echo_select_page($user);//教科，出席番号選択画面
 
 function echo_main_page($msg){//ログイン画面
