@@ -2,20 +2,21 @@
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
 $passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
-$time_now = date('H:i:s');	// 現在の時分秒
+$time_now = date('9:31:00');	// 現在の時分秒
 
 //1限:0 2限:1 3限:2 4限:3 5限:4
-//開始：1 終了:0
-$Subject[0][1] = '9:30:00';//1限開始
-$Subject[0][0] = '11:00:00';//1限終了
-$Subject[1][1] = '11:10:00';//2限開始
-$Subject[1][0] = '12:40:00';//2限終了
-$Subject[2][1] = '13:30:00';//3限開始
-$Subject[2][0] = '15:00:00';//3限終了
-$Subject[3][1] = '15:10:00';//4限開始
-$Subject[3][0] = '16:40:00';//4限終了
-$Subject[4][1] = '16:50:00';//5限開始
-$Subject[4][0] = '18:20:00';//5限終了
+$Subject =[
+    [0,'9:30:00','Start'],//1限開始
+    [1,'11:00:00','End'],//1限終了
+    [2,'11:10:00','Start'],//2限開始
+    [3,'12:40:00','End'],//2限終了
+    [4,'13:30:00','Start'],//3限開始
+    [5,'15:00:00','End'],//3限終了
+    [6,'15:10:00','Start'],//4限開始
+    [7,'16:40:00','End'],//4限終了
+    [8,'16:50:00','Start'],//4限開始
+    [9,'18:20:00','End'],//5限終了
+];
 
 if(!isset($_POST['user'])){//「ログイン画面」に遷移
     echo_login_page("");//ログイン画面
@@ -28,8 +29,8 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・�
     echo_login_page("IDまたはパスワードに誤りがあります");//「ログイン画面」に再帰
     exit;
 }
-for($i = 0; $i<=4; $i++){//5限分の繰り返し(5回)
-    if(($time_now<$Subject[$i][1]) || ($$time_now>$Subject[[$i][0]])){//授業時間外の場合「授業時間外画面」に遷移
+for($i = 0; $i<=9; $i++){//5限分の繰り返し(5回)
+    if(($time_now<$Subject[$i][1]) || ($$time_now>$Subject[[$i+1][1]])){//授業時間外の場合「授業時間外画面」に遷移
         echo_exit_page($user);//授業時間外画面
         exit;
     }
@@ -49,6 +50,7 @@ function echo_login_page($msg){//ログイン画面
         <body>
         <h1 align="left"> 東京都市大学 </h1>
         出席確認システム
+        echo $time_now
         <hr color="#737373">
         <br>
         <form method="POST" action="sample1.php">
@@ -120,6 +122,7 @@ function echo_select_page($who){//教科，出席番号選択画面
 EOT;
 }
 function echo_exit_page($who){//授業時間外画面
+    global $time_now,$Subject;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -128,11 +131,17 @@ function echo_exit_page($who){//授業時間外画面
             <title>東京都市大学　出席管理システム</title>
         </head>
         <body>
-    $who
-    <hr color="#737373">
-    現在時間に該当する時限が取得できませんでした。再度ログイン画面より操作して下さい。
+            $who
+            <hr color="#737373">
+            現在時間に該当する時限が取得できませんでした。再度ログイン画面より操作して下さい。
+            <br>
         </body>
     </html>
 EOT;
+    for($i = 0; $i<=9; $i++){//5限分の繰り返し(5回)
+        echo $i."現在時刻:".$time_now."\n";
+        echo $i."限開始時刻:".$Subject[$i][1]."\n";
+        echo "<br>";
+        }
 }
 ?>
