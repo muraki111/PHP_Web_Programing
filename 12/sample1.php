@@ -18,7 +18,6 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){
 
 echo_login_page($user);
 
-////////////////////////////////////////////////////////////////////////
 function echo_auth_page($msg){
     global $date_now,$time_now;
     echo <<<EOT
