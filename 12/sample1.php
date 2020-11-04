@@ -5,20 +5,20 @@ $date_now = date('Y-m-d');	// 年月日
 $time_now = date('H:i:s');	// 時分秒
 
 if(!isset($_POST['user'])){
-    echo_auth_page("");
+    echo_main_page("");
     exit;
 }
 $user=$_POST['user'];
 $pass=$_POST['pass'];
 
 if( (!isset($passlist[$user])) || $passlist[$user] != $pass){
-    echo_auth_page("IDまたはパスワードに誤りがあります");
+    echo_main_page("IDまたはパスワードに誤りがあります");
     exit;
 }
 
-echo_login_page($user);
+echo_select_page($user);
 
-function echo_auth_page($msg){
+function echo_main_page($msg){
     global $date_now,$time_now;
     echo <<<EOT
     <!DOCTYPE html>
@@ -46,7 +46,7 @@ function echo_auth_page($msg){
     </html>
 EOT;
 }
-function echo_login_page($who){
+function echo_select_page($who){
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -100,7 +100,7 @@ function echo_login_page($who){
     </html>
 EOT;
 }
-function echo_hello_page($who){
+function echo_exit_page($who){
     echo <<<EOT
     <!DOCTYPE html>
     <html>
