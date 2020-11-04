@@ -15,7 +15,7 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass)
     exit;
 }
 
-echo_hello_page($user);
+echo_login_page($user);
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -46,6 +46,32 @@ echo <<<EOT
 EOT;
 }
 ////////////////////////////////////////////////////////////////////////
+function echo_login_page($who)
+{
+echo <<<EOT
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>東京都市大学　出席管理システム</title>
+    </head>
+    <body>
+$who
+<hr>
+授業科目を確認<br>
+<select name="SelectSubject" size="7">
+    <option value="x" selected="">▽選択して下さい。</option>
+    <option value="">数学</option>
+    <option value="">理科</option>
+    <option value="">社会</option>
+    <option value="">音楽</option>
+    <option value="">美術</option>
+    <option value="">体育</option>
+</select>
+    </body>
+</html>
+EOT;
+}
 function echo_hello_page($who)
 {
 echo <<<EOT
@@ -53,7 +79,7 @@ echo <<<EOT
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>ページタイトル</title>
+        <title>東京都市大学　出席管理システム</title>
     </head>
     <body>
 $who
