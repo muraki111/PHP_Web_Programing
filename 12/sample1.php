@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');
-$passlist=array( 'g1872000' => 'g1872000', 'hoge2' => 'hoge2pass');
+$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');
 $date_now = date('Y-m-d');	// 年月日
 $time_now = date('H:i:s');	// 時分秒
 
