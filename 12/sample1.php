@@ -30,7 +30,7 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・�
     exit;
 }
 for($i = 0; $i<=9; $i+=2){//5限分の繰り返し(5回)
-    if((strtotime($time_now) >= strtotime($Subject[$i][1])) && (strtotime($time_now) <= strtotime($Subject[$i+1][1]))){
+    if((strtotime($time_now) >= strtotime($Subject[$i][1])) && (strtotime($time_now) <= strtotime($Subject[$i+1][1]))){//授業時間内の場合「教科，出席番号選択画面」に遷移
         echo_select_page($user);//授業時間内かつ，ユーザ名・パスワードが正しい場合「教科，出席番号選択画面」に遷移
         exit;
     }elseif((strtotime($time_now) >= strtotime($Subject[$i+1][1])) && (strtotime($time_now) <= strtotime($Subject[$i+2][1]))){//授業時間外の場合「授業時間外画面」に遷移
