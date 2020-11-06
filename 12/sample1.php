@@ -2,7 +2,7 @@
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
 $passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
-$time_now = date('H:i:s');	// 現在の時分秒H:i:s
+$time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
 //1限:0 2限:1 3限:2 4限:3 5限:4
 $Subject =[
@@ -53,7 +53,8 @@ function echo_login_page($msg){//ログイン画面
             <title>東京都市大学　出席管理システム</title>
         </head>
         <body>
-        <h1 align="left"> 東京都市大学 </h1>
+        <img src="tcu_logo.gif" alt="" border="0">
+        <br>
         出席確認システム
         <hr color="#737373">
         <br>
@@ -80,7 +81,8 @@ function echo_select_page($who){//教科，出席番号選択画面
             <title>東京都市大学　出席管理システム</title>
         </head>
         <body>
-            <h1 align="left" style="display:inline;"> 東京都市大学 </h1>
+            <img src="tcu_logo.gif" alt="" border="0">
+            <br>
             $who
             <hr color="#737373">
             授業科目を確認<br>
