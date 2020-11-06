@@ -24,11 +24,11 @@ for($i = 0; $i<=9; $i+=2){//5限分の繰り返し(5回)
     print "<hr>";
 }
 for($i = 0; $i<=9; $i+=2){//5限分の繰り返し(5回)
-    if((($time_now) <= ($Subject[$i][1])) && (($time_now) >= ($Subject[[$i+1][1]]))){
+    if(($time_now <= $Subject[$i][1]) && ($time_now >= $Subject[[$i+1][1]])){
         echo "現在".$i."限目授業時間内です";
         exit;
     }else{
-        echo "現在".$i."限目ではありません";
+        echo "現在授業時間ではありません";
     }
 }
 ?>
