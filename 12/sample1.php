@@ -24,7 +24,10 @@ if(!isset($_POST['user'])){//「ログイン画面」に遷移
 }
 $user=$_POST['user'];//ユーザ名
 $pass=$_POST['pass'];//パスワード
-
+if(isset($_POST['selected'])){
+    echo_selected_page($user);
+    exit;
+}
 if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・パスワードの誤り時に「ログイン画面」に再帰
     echo_login_page("IDまたはパスワードに誤りがあります");//「ログイン画面」に再帰
     exit;
@@ -35,11 +38,14 @@ for($i = 0; $i<=9; $i+=2){//5限分の繰り返しでifの条件判定
         exit;
     }elseif((strtotime($time_now) >= strtotime($Subject[$i+1][1])) && (strtotime($time_now) <= strtotime($Subject[$i+2][1]))){//授業時間外の場合「授業時間外画面」に遷移
         echo_exit_page($user);//授業時間外画面
+        exit;
     }elseif((strtotime($Subject[0][1]) <= strtotime($Subject[9][1]))){
         echo_exit_page($user);//授業時間外画面
         exit;
     }
 }
+
+
 function echo_login_page($msg){//ログイン画面
     global $date_now,$time_now;
     echo <<<EOT
@@ -70,6 +76,7 @@ function echo_login_page($msg){//ログイン画面
 EOT;
 }
 function echo_select_page($who){//教科，出席番号選択画面
+    global $user ,$pass;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -98,7 +105,7 @@ function echo_select_page($who){//教科，出席番号選択画面
             <br>
             教員が指示した番号を選択
             <br>
-            <select name="InpNo" size="3">
+            <select name="SelectNo" size="3">
                 <option value="x" selected="">▽選択して下さい。</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -116,7 +123,11 @@ function echo_select_page($who){//教科，出席番号選択画面
             <br>
             <font class="alert" style="color:#ff0000;">授業科目と教員番号を選択して下さい。</font>
             <br>
-            <button type="submit" name="login" value="login"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席登録</button>
+            <form method="POST" action="sample1.php">
+                <button type="submit" name="selected" value="selected"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席登録</button>
+                <input type="hidden" name="user" value="$user">
+                <input type="hidden" name="pass" value="$pass">
+            </form>
             <br>
             <br>
             ※教員の指示があるまで出席登録をクリックしないこと
@@ -142,7 +153,8 @@ function echo_exit_page($who){//授業時間外画面
     </html>
 EOT;
 }
-function echo_selected_page(){//教科，出席番号選択後画面
+function echo_selected_page($who){//教科，出席番号選択後画面
+    global $user ,$pass;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -152,7 +164,7 @@ function echo_selected_page(){//教科，出席番号選択後画面
         </head>
         <body>
         <img src="tcu_logo.gif" alt="" border="0">
-        出席確認システム
+        $who
         <hr color="#737373">
         出席を受け付けました。
         <br>
