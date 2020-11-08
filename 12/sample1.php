@@ -40,7 +40,6 @@ for($i = 0; $i<=9; $i+=2){//5限分の繰り返しでifの条件判定
         exit;
     }
 }
-
 function echo_login_page($msg){//ログイン画面
     global $date_now,$time_now;
     echo <<<EOT
