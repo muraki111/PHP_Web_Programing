@@ -143,9 +143,25 @@ function echo_exit_page($who){//授業時間外画面
 EOT;
 }
 function echo_selected_page(){//教科，出席番号選択後画面
-    global;
     echo <<<EOT
-
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8" />
+            <title>東京都市大学　出席管理システム</title>
+        </head>
+        <body>
+        <img src="tcu_logo.gif" alt="" border="0">
+        出席確認システム
+        <hr color="#737373">
+        <br>
+        出席を受け付けました。
+        <br>
+        <br>
+        授業科目：
+        指示番号：
+        </body>
+    </html>
 EOT;
 }
 ?>
