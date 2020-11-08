@@ -143,4 +143,10 @@ function echo_exit_page($who){//授業時間外画面
     </html>
 EOT;
 }
+function echo_selected_page(){//教科，出席番号選択後画面
+    global;
+    echo <<<EOT
+
+EOT;
+}
 ?>
