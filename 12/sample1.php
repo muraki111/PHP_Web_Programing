@@ -2,7 +2,7 @@
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
 $passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
-$time_now = date('9:30:');	// 現在の時分秒H:i:s
+$time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
 //1限:0 2限:1 3限:2 4限:3 5限:4
 $Subject =[//時限の開始・終了格納
