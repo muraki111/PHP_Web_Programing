@@ -24,7 +24,8 @@ if(!isset($_POST['user'])){//「ログイン画面」に遷移
 }
 $user=$_POST['user'];//ユーザ名
 $pass=$_POST['pass'];//パスワード
-if(isset($_POST['selected'])){
+
+if(isset($_POST['selected'])){//「教科，出席番号選択後画面」に遷移
     echo_selected_page($user);
     exit;
 }
