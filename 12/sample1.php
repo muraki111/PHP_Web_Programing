@@ -154,11 +154,11 @@ function echo_selected_page(){//教科，出席番号選択後画面
         <img src="tcu_logo.gif" alt="" border="0">
         出席確認システム
         <hr color="#737373">
-        <br>
         出席を受け付けました。
         <br>
         <br>
         授業科目：
+        <br>
         指示番号：
         </body>
     </html>
