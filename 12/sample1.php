@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
-$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
+$passlist=array( 'g1872076' => 'g1872076', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
 $time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
@@ -24,9 +24,10 @@ if(!isset($_POST['user'])){//「ログイン画面」に遷移
 }
 $user=$_POST['user'];//ユーザ名
 $pass=$_POST['pass'];//パスワード
-
 if(isset($_POST['selected'])){//「教科，出席番号選択後画面」に遷移
-    echo_selected_page($user);
+    $SelectSubject=$_POST['SelectSubject'];
+    $SelectNo=$_POST['SelectNo'];
+    echo_selected_page($user,$SelectSubject,$SelectNo);
     exit;
 }
 if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・パスワードの誤り時に「ログイン画面」に再帰
@@ -35,7 +36,7 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・�
 }
 for($i = 0; $i<=9; $i+=2){//5限分の繰り返しでifの条件判定
     if((strtotime($time_now) >= strtotime($Subject[$i][1])) && (strtotime($time_now) <= strtotime($Subject[$i+1][1]))){//授業時間内の場合「教科，出席番号選択画面」に遷移
-        echo_select_page($user);//授業時間内かつ，ユーザ名・パスワードが正しい場合「教科，出席番号選択画面」に遷移
+        echo_select_page($user,"エラーメッセージ");//授業時間内かつ，ユーザ名・パスワードが正しい場合「教科，出席番号選択画面」に遷移
         exit;
     }elseif((strtotime($time_now) >= strtotime($Subject[$i+1][1])) && (strtotime($time_now) <= strtotime($Subject[$i+2][1]))){//授業時間外の場合「授業時間外画面」に遷移
         echo_exit_page($user);//授業時間外画面
@@ -75,7 +76,7 @@ function echo_login_page($msg){//ログイン画面
     </html>
 EOT;
 }
-function echo_select_page($who){//教科，出席番号選択画面
+function echo_select_page($who,$msg){//教科，出席番号選択画面
     global $user ,$pass;
     echo <<<EOT
     <!DOCTYPE html>
@@ -90,40 +91,40 @@ function echo_select_page($who){//教科，出席番号選択画面
             $who
             <hr color="#737373">
             授業科目を確認<br>
-            <select name="SelectSubject" size="8" style="width: 188.333px">
-                <option value="x" selected="">▽選択して下さい。</option>
-                <option value="">数学</option>
-                <option value="">理科</option>
-                <option value="">社会</option>
-                <option value="">音楽</option>
-                <option value="">美術</option>
-                <option value="">体育</option>
-            </select>
+            <form method="POST" action="sample1.php" name="Subject">
+                <select name="SelectSubject" size="8" style="width: 188.333px">
+                    <option value="x" selected="">▽選択して下さい。</option>
+                    <option value="数学">数学</option>
+                    <option value="理科">理科</option>
+                    <option value="社会">社会</option>
+                    <option value="音楽">音楽</option>
+                    <option value="美術">美術</option>
+                    <option value="体育">体育</option>
+                </select>
             <br>
             <font class="notice"style="color:#0000FF;">※出席登録ボタンをクリックする前に、授業科目を選択してください。</font>
             <br>
             <br>
             教員が指示した番号を選択
             <br>
-            <select name="SelectNo" size="3">
-                <option value="x" selected="">▽選択して下さい。</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-            </select>
+                <select name="SelectNo" size="3">
+                    <option value="x" selected="">▽選択して下さい。</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
             <br>
             <br>
             教員の指示に従って出席登録をクリック
             <br>
-            <font class="alert" style="color:#ff0000;">授業科目と教員番号を選択して下さい。</font>
+            <font class="notice"style="color:#ff0000;">$msg</font>
             <br>
-            <form method="POST" action="sample1.php">
                 <button type="submit" name="selected" value="selected"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席登録</button>
                 <input type="hidden" name="user" value="$user">
                 <input type="hidden" name="pass" value="$pass">
@@ -153,7 +154,7 @@ function echo_exit_page($who){//授業時間外画面
     </html>
 EOT;
 }
-function echo_selected_page($who){//教科，出席番号選択後画面
+function echo_selected_page($who,$Subject,$No){//教科，出席番号選択後画面
     global $user ,$pass;
     echo <<<EOT
     <!DOCTYPE html>
@@ -169,9 +170,9 @@ function echo_selected_page($who){//教科，出席番号選択後画面
         出席を受け付けました。
         <br>
         <br>
-        授業科目：
+        授業科目：$Subject
         <br>
-        指示番号：
+        指示番号：$No
         </body>
     </html>
 EOT;
