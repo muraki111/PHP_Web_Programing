@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
-$passlist=array( 'g1872076' => 'g1872076', 'g1872001' => 'g1872001');//ユーザ名・パスワード
+$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
 $time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
