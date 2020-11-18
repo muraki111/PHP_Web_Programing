@@ -4,6 +4,12 @@ $passlist=array( 'g1872076' => 'g1872076', 'g1872001' => 'g1872001');//ユーザ
 $date_now = date('Y-m-d');	// 現在のの年月日
 $time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
+$hostname = '127.0.0.1';
+$username = 'root';
+$password = 'dbpass';
+$link = mysqli_connect($hostname,$username,$password);
+if(! $link){ exit("Connect error!"); }
+
 //1限:0 2限:1 3限:2 4限:3 5限:4
 $Subject =[//時限の開始・終了格納
     [0,'9:30:00','Start'],//1限開始
