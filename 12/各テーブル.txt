@@ -18,3 +18,6 @@ CREATE TABLE g1872000_PE (Subject VARCHAR(3) BINARY, Num INT, DAY DATETIME,PRIMA
 体育 PE
 
 https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1175308191
+
+
+create table user (id int, Mth varchar(10) BINARY, Sci varchar(10) BINARY, Sct varchar(10) BINARY, Msc varchar(10) BINARY, Art varchar(10) BINARY, PE varchar(10) BINARY);
