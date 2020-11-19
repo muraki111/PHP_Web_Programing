@@ -1,15 +1,27 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
-$passlist=array( 'g1872076' => 'g1872076', 'g1872001' => 'g1872001');//ユーザ名・パスワード
+$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
 $time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
 $hostname = '127.0.0.1';
 $username = 'root';
 $password = 'dbpass';
+$dbname = 'sample12_db';
+
+$tablename_g1872000 = 'g1872000';
+$tablename_g1872001 = 'g1872001';
+
 $link = mysqli_connect($hostname,$username,$password);
 if(! $link){ exit("Connect error!"); }
 
+$result = mysqli_query($link,"CREATE DATABASE $dbname CHARACTER SET utf8");
+if(!$result) { echo "Create database $dbname failed!\n"; }
+
+$result = mysqli_query($link,"CREATE TABLE g1872000 (id int, Mth int, Sci int, Sct int, Msc int, Art int, PE int, PRIMARY KEY(id))");
+if(!$result) { echo "Create table $tablename_g1872000 failed!\n"; }
+
+mysqli_close($link);
 //1限:0 2限:1 3限:2 4限:3 5限:4
 $Subject =[//時限の開始・終了格納
     [0,'9:30:00','Start'],//1限開始
