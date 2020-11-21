@@ -230,8 +230,11 @@ EOT;
         case 'Mth':
             echo '数学';
             break;
-        case 'Sct':
+        case 'Sci':
             echo '理科';
+            break;
+        case 'Sct':
+            echo '社会';
             break;
         case 'Msc':
             echo '音楽';
@@ -291,7 +294,7 @@ function echo_SelectToConfirm_page($who){//出席を確認する教科の選択�
 EOT;
 }
 function echo_confim_page($who,$Subject){//教科，出席番号選択後画面
-    global $user ,$pass ,$link;
+    global $user ,$pass ,$link,$tablename;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -303,6 +306,24 @@ function echo_confim_page($who,$Subject){//教科，出席番号選択後画面
             <img src="tcu_logo.gif" alt="" border="0">
             $who
             <hr color="#737373">
+            <form method="POST" action="sample1.php" name="Subject">
+            <select name="SelectSubject" size="8" style="width: 188.333px">
+                    <option value="x" selected="">▽選択して下さい。</option>
+                    <option value="Mth">数学</option>
+                    <option value="Sci">理科</option>
+                    <option value="Sct">社会</option>
+                    <option value="Msc">音楽</option>
+                    <option value="Art">美術</option>
+                    <option value="PE">体育</option>
+                </select>
+                <br>
+                <br>
+                <button type="submit" name="confirm" value="confirm"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">表示教科の変更</button>
+                <input type="hidden" name="user" value="$user">
+                <input type="hidden" name="pass" value="$pass">
+                <input type="hidden" name="confirm">
+            </form>
+            <br>
             現在確認している教科：
         </body>
     </html>
@@ -311,8 +332,11 @@ EOT;
         case 'Mth':
             echo '数学';
             break;
-        case 'Sct':
+        case 'Sci':
             echo '理科';
+            break;
+        case 'Sct':
+            echo '社会';
             break;
         case 'Msc':
             echo '音楽';
@@ -323,8 +347,8 @@ EOT;
         case 'PE':
             echo '体育';
             break;
-        default:
-            echo $Subject;
     }
+echo "<br />";
+//select a.Mth, b.Mth from g1872001 a, g1872002 b where a.id = b.id order by a.id;
 }
 ?>
