@@ -8,9 +8,11 @@ $hostname = '127.0.0.1';
 $username = 'root';
 $password = 'dbpass';
 $dbname = 'sample12_db';
-
-$tablename_g1872000 = 'g1872000';
-$tablename_g1872001 = 'g1872001';
+$StuNum = 10;//生徒の数(テーブル数)
+for($i = 0; $i < $StuNum; $i++){//テーブルの名前
+    $str = sprintf("%03d",$i + 1);
+    $tablename[$i] = 'g1872'.$str;
+}
 
 $link = mysqli_connect($hostname,$username,$password);
 if(! $link){ exit("Connect error!"); }
@@ -19,23 +21,25 @@ $result = mysqli_query($link,"USE $dbname");
 if(!$result) {//データベース初期生成
     $result = mysqli_query($link,"CREATE DATABASE $dbname CHARACTER SET utf8");//データベース生成
     $result = mysqli_query($link,"USE $dbname");//データベース指定
-    $result = mysqli_query(//テーブル生成
-        $link,"CREATE TABLE if not exists g1872000 (
-            id INT NOT NULL AUTO_INCREMENT,
-            Mth int,
-            Sci int,
-            Sct int,
-            Msc int,
-            Art int,
-            PE int,
-            PRIMARY KEY(id)
-        ) CHARACTER SET utf8"
-    );
-    for ($i = 1; $i <= 12; $i++) {
-        $result = mysqli_query(
-            $link,"INSERT into g1872000(Mth,Sci,Sct,Msc,Art,PE) values(0,0,0,0,0,0)"
+    for($i = 0; $i < $StuNum; $i++){//生徒の数分テーブルを作成する
+        $result = mysqli_query(//テーブル生成
+            $link,"CREATE TABLE if not exists $tablename[$i] (
+                id INT NOT NULL AUTO_INCREMENT,
+                Mth int,
+                Sci int,
+                Sct int,
+                Msc int,
+                Art int,
+                PE int,
+                PRIMARY KEY(id)
+            ) CHARACTER SET utf8"
         );
-        if(!$result) { echo "update table $tablename_g1872000 failed!\n"; }
+        for ($j = 1; $j <= 12; $j++) {
+            $result = mysqli_query(
+                $link,"INSERT into $tablename[$i](Mth,Sci,Sct,Msc,Art,PE) values(0,0,0,0,0,0)"
+            );
+            if(!$result) { echo "update table $tablename[$i] failed!\n"; echo "<br />";}
+        }
     }
 }
 
