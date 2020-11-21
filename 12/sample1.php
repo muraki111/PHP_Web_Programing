@@ -15,25 +15,29 @@ $tablename_g1872001 = 'g1872001';
 $link = mysqli_connect($hostname,$username,$password);
 if(! $link){ exit("Connect error!"); }
 
-$result = mysqli_query($link,"CREATE DATABASE if not exists $dbname CHARACTER SET utf8");
-if(!$result) { echo "Create database $dbname failed!\n"; }
-
 $result = mysqli_query($link,"USE $dbname");
-if(!$result) { exit("USE failed!"); }
-
-$result = mysqli_query(//テーブル作成
-    $link,"CREATE TABLE if not exists g1872000 (
-        id int,
-        Mth int,
-        Sci int,
-        Sct int,
-        Msc int,
-        Art int,
-        PE int,
-        PRIMARY KEY(id)
-    ) CHARACTER SET utf8"
-);
-if(!$result) { echo "Create table $tablename_g1872000 failed!\n"; }
+if(!$result) {//データベース初期生成
+    $result = mysqli_query($link,"CREATE DATABASE $dbname CHARACTER SET utf8");//データベース生成
+    $result = mysqli_query($link,"USE $dbname");//データベース指定
+    $result = mysqli_query(//テーブル生成
+        $link,"CREATE TABLE if not exists g1872000 (
+            id INT NOT NULL AUTO_INCREMENT,
+            Mth int,
+            Sci int,
+            Sct int,
+            Msc int,
+            Art int,
+            PE int,
+            PRIMARY KEY(id)
+        ) CHARACTER SET utf8"
+    );
+    for ($i = 1; $i <= 12; $i++) {
+        $result = mysqli_query(
+            $link,"INSERT into g1872000(Mth,Sci,Sct,Msc,Art,PE) values(0,0,0,0,0,0)"
+        );
+        if(!$result) { echo "update table $tablename_g1872000 failed!\n"; }
+    }
+}
 
 mysqli_close($link);
 //1限:0 2限:1 3限:2 4限:3 5限:4
