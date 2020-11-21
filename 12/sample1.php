@@ -39,7 +39,6 @@ if(!$result) {//データベース初期生成
     }
 }
 
-mysqli_close($link);
 //1限:0 2限:1 3限:2 4限:3 5限:4
 $Subject =[//時限の開始・終了格納
     [0,'9:30:00','Start'],//1限開始
@@ -86,6 +85,7 @@ for($i = 0; $i<=9; $i+=2){//5限分の繰り返しでifの条件判定
         exit;
     }
 }
+mysqli_close($link);
 
 function echo_login_page($msg){//ログイン画面
     global $date_now,$time_now;
@@ -134,12 +134,12 @@ function echo_select_page($who,$msg){//教科，出席番号選択画面
             <form method="POST" action="sample1.php" name="Subject">
                 <select name="SelectSubject" size="8" style="width: 188.333px">
                     <option value="x" selected="">▽選択して下さい。</option>
-                    <option value="数学">数学</option>
-                    <option value="理科">理科</option>
-                    <option value="社会">社会</option>
-                    <option value="音楽">音楽</option>
-                    <option value="美術">美術</option>
-                    <option value="体育">体育</option>
+                    <option value="Mth">数学</option>
+                    <option value="Sci">理科</option>
+                    <option value="Sct">社会</option>
+                    <option value="Msc">音楽</option>
+                    <option value="Art">美術</option>
+                    <option value="PE">体育</option>
                 </select>
             <br>
             <font class="notice"style="color:#0000FF;">※出席登録ボタンをクリックする前に、授業科目を選択してください。</font>
@@ -195,7 +195,7 @@ function echo_exit_page($who){//授業時間外画面
 EOT;
 }
 function echo_selected_page($who,$Subject,$No){//教科，出席番号選択後画面
-    global $user ,$pass;
+    global $user ,$pass ,$link,$num;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -204,17 +204,43 @@ function echo_selected_page($who,$Subject,$No){//教科，出席番号選択後�
             <title>東京都市大学　出席管理システム</title>
         </head>
         <body>
-        <img src="tcu_logo.gif" alt="" border="0">
-        $who
-        <hr color="#737373">
-        出席を受け付けました。
-        <br>
-        <br>
-        授業科目：$Subject
-        <br>
-        指示番号：$No
+            <img src="tcu_logo.gif" alt="" border="0">
+            $who
+            <hr color="#737373">
+            出席を受け付けました。
+            <br>
+            <br>
+            授業科目：
         </body>
     </html>
 EOT;
+    switch ($Subject){//教科表示
+        case 'Mth':
+            echo '数学';
+            break;
+        case 'Sct':
+            echo '理科';
+            break;
+        case 'Msc':
+            echo '音楽';
+            break;
+        case 'Art':
+            echo '美術';
+            break;
+        case 'PE':
+            echo '体育';
+            break;
+    }
+    echo <<<EOT
+    <!DOCTYPE html>
+    <html>
+        <body>
+            <br>
+            指示番号：
+            $No
+        </body>
+    </html>
+EOT;
+$result = mysqli_query($link,"update $user set $Subject = $No where $Subject = 0 limit 1");
 }
 ?>
