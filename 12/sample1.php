@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
-$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001');//ユーザ名・パスワード
+$passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001', 'teacher' => 'teacher');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
 $time_now = date('9:30:01');	// 現在の時分秒H:i:s
 
@@ -78,7 +78,10 @@ if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・�
     exit;
 }
 for($i = 0; $i<=9; $i+=2){//5限分の繰り返しでifの条件判定
-    if((strtotime($time_now) >= strtotime($Subject[$i][1])) && (strtotime($time_now) <= strtotime($Subject[$i+1][1]))){//授業時間内の場合「教科，出席番号選択画面」に遷移
+    if($user=="teacher"){
+        echo_SelectToConfirm_page($user);
+        exit;
+    }elseif((strtotime($time_now) >= strtotime($Subject[$i][1])) && (strtotime($time_now) <= strtotime($Subject[$i+1][1]))){//授業時間内の場合「教科，出席番号選択画面」に遷移
         echo_select_page($user,"");//授業時間内かつ，ユーザ名・パスワードが正しい場合「教科，出席番号選択画面」に遷移
         exit;
     }elseif((strtotime($time_now) >= strtotime($Subject[$i+1][1])) && (strtotime($time_now) <= strtotime($Subject[$i+2][1]))){//授業時間外の場合「授業時間外画面」に遷移
@@ -246,5 +249,40 @@ EOT;
     </html>
 EOT;
 $result = mysqli_query($link,"update $user set $Subject = $No where $Subject = 0 limit 1");
+}
+function echo_SelectToConfirm_page($who){//出席を確認する教科の選択画面
+    global $user ,$pass;
+    echo <<<EOT
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8" />
+            <title>東京都市大学　出席管理システム</title>
+        </head>
+        <body>
+            <img src="tcu_logo.gif" alt="" border="0">
+            <br>
+            $who
+            <hr color="#737373">
+            出席を確認する授業科目を選択<br>
+            <form method="POST" action="sample1.php" name="Subject">
+                <select name="SelectSubject" size="8" style="width: 188.333px">
+                    <option value="x" selected="">▽選択して下さい。</option>
+                    <option value="Mth">数学</option>
+                    <option value="Sci">理科</option>
+                    <option value="Sct">社会</option>
+                    <option value="Msc">音楽</option>
+                    <option value="Art">美術</option>
+                    <option value="PE">体育</option>
+                </select>
+            <br>
+            <br>
+                <button type="submit" name="selected" value="selected"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席確認</button>
+                <input type="hidden" name="user" value="$user">
+                <input type="hidden" name="pass" value="$pass">
+            </form>
+        </body>
+    </html>
+EOT;
 }
 ?>
