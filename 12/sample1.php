@@ -73,6 +73,11 @@ if(isset($_POST['selected'])){//「教科，出席番号選択後画面」に遷
     echo_selected_page($user,$SelectSubject,$SelectNo);
     exit;
 }
+if(isset($_POST['confirm'])){
+    $SelectSubject=$_POST['SelectSubject'];
+    echo_confim_page($user,$SelectSubject);
+    exit;
+}
 if( (!isset($passlist[$user])) || $passlist[$user] != $pass){//ユーザ名・パスワードの誤り時に「ログイン画面」に再帰
     echo_login_page("IDまたはパスワードに誤りがあります");//「ログイン画面」に再帰
     exit;
@@ -202,7 +207,7 @@ function echo_exit_page($who){//授業時間外画面
 EOT;
 }
 function echo_selected_page($who,$Subject,$No){//教科，出席番号選択後画面
-    global $user ,$pass ,$link,$num;
+    global $user ,$pass ,$link;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -277,12 +282,49 @@ function echo_SelectToConfirm_page($who){//出席を確認する教科の選択�
                 </select>
             <br>
             <br>
-                <button type="submit" name="selected" value="selected"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席確認</button>
+                <button type="submit" name="confirm" value="confirm"style="width:170px;height:25px;color:#ffffff;background-color:#01A9DB;border-color:#01A9DB">出席確認</button>
                 <input type="hidden" name="user" value="$user">
                 <input type="hidden" name="pass" value="$pass">
             </form>
         </body>
     </html>
 EOT;
+}
+function echo_confim_page($who,$Subject){//教科，出席番号選択後画面
+    global $user ,$pass ,$link;
+    echo <<<EOT
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8" />
+            <title>東京都市大学　出席管理システム</title>
+        </head>
+        <body>
+            <img src="tcu_logo.gif" alt="" border="0">
+            $who
+            <hr color="#737373">
+            現在確認している教科：
+        </body>
+    </html>
+EOT;
+    switch ($Subject){//教科表示
+        case 'Mth':
+            echo '数学';
+            break;
+        case 'Sct':
+            echo '理科';
+            break;
+        case 'Msc':
+            echo '音楽';
+            break;
+        case 'Art':
+            echo '美術';
+            break;
+        case 'PE':
+            echo '体育';
+            break;
+        default:
+            echo $Subject;
+    }
 }
 ?>
