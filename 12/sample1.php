@@ -2,7 +2,7 @@
 date_default_timezone_set('Asia/Tokyo');//時間帯(タイムゾーン)
 $passlist=array( 'g1872000' => 'g1872000', 'g1872001' => 'g1872001', 'teacher' => 'teacher');//ユーザ名・パスワード
 $date_now = date('Y-m-d');	// 現在のの年月日
-$time_now = date('9:30:01');	// 現在の時分秒H:i:s
+$time_now = date('H:i:s');	// 現在の時分秒
 
 $hostname = '127.0.0.1';
 $username = 'root';
@@ -293,7 +293,7 @@ function echo_SelectToConfirm_page($who){//出席を確認する教科の選択�
     </html>
 EOT;
 }
-function echo_confim_page($who,$Subject){//教科，出席番号選択後画面
+function echo_confim_page($who,$Subject){//教科，選択後画面
     global $user ,$pass ,$link,$tablename;
     echo <<<EOT
     <!DOCTYPE html>
